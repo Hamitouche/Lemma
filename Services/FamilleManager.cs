@@ -34,11 +34,20 @@ namespace LemmaApp.Services
 
 public  Task<bool> AddFamilleAsync(Famille famille)
 {
+            try
+            {
+
+                App.Database.SaveFamilleAsync(famille);
+
+               
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.StackTrace);
+            }
+           
+                return Task.FromResult(true);
             
-
-           App.Database.SaveFamilleAsync(famille);
-
-            return  Task.FromResult(true);
 }
 
 public async Task<bool> UpdateFamilleAsync(Famille famille)
